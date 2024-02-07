@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <link rel="stylesheet" href="./arquivo.css">  
+    <title>Document</title>
+</head>
+<body>
+
+      
+       <div class="row">        
+        <form id="form" class="col s12"  >
+            <h1><b>Academia Califórnia</b></h1>
+            <div class="row">
+                <div class="input-field col s12">
+                  <input name="id" type="text" class="validate" readonly>
+                  <label for="id"><b>ID</b></label>
+                </div>
+              </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input  name="nome" id="nome" type="text" class="validate" required>
+              <label for="nome"> <b>NOME</b></label>
+            </div>
+            <div class="input-field col s6">
+              <input name="sobrenome" id="sobrenome" type="text" class="validate" required>
+              <label for="sobrenome"><b>SOBRENOME</b></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="cpf" id="cpf" type="text" class="validate" required>
+              <label for="cpf"><b>CPF</b></label>
+            </div>
+          </div>                  
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="dataNasc" id="dataNasc" type="date" class="validate" required>
+              <label for="dataNasc"><b>DATA DE NASCIMENTO</b></label>
+            </div>
+          </div>
+          <h5>Sexo</h5>
+          <p>
+            <label>
+              <input name="sexo" type="radio" value="Masculino" />
+              <span>Masculino</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="sexo" type="radio" value="Feminino"/>
+              <span>Feminino</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input class="with-gap" name="sexo" type="radio" value="Outros" /> <span>Outros</span>
+            </label>
+          </p>                           
+            
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="email" id="email" type="email" class="validate"autocomplete="off" >
+              <label for="email"><b>EMAIL</b></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="celular" id="celular" type="text" class="validate" required>
+              <label for="celular"><b>TELEFONE</b></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="dataMens" id="dataMens" type="date" class="validate" required>
+              <label for="dataMens"><b>DATA DA MENSALIDADE</b></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="valorMensalidade" id="valorMensalidade" type="number" class="validate" required>
+              <label for="valorMensalidade"><b>VALOR DA MENSALIDADE</b></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="status" id="status" type="text" class="validate" required>
+              <label for="status"><b>STATUS</b></label>
+            </div>           
+          </div>
+          <button type="submit"  class="btn btn-success" onclick="salvarNoBanco()">Salvar</button>
+          <button type="button"  class="btn btn-success" onclick="limparCampos()">Limpar</button>
+        </form>      
+      </div>
+      <table class="striped" id="tabela">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Vencimendo</th>
+              <th>Valor da mensalidade</th>
+              <th>Status</th>
+              <th>Editar</th>
+              <th>Excluir</th>
+          </tr>
+        </thead>
+
+        <tbody>
+         
+        </tbody>
+      </table>
+            
+      <script src="./arquivo.js"></script>
+        
+      </body>
+</html>
