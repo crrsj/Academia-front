@@ -18,7 +18,7 @@
             <h1><b>Academia Califórnia</b></h1>
             <div class="row">
                 <div class="input-field col s12">
-                  <input name="id" type="text" class="validate" readonly>
+                  <input name="id" id="id" type="text" class="validate" >
                   <label for="id"><b>ID</b></label>
                 </div>
               </div>
@@ -95,6 +95,8 @@
           </div>
           <button type="submit"  class="btn btn-success" onclick="salvarNoBanco()">Salvar</button>
           <button type="button"  class="btn btn-success" onclick="limparCampos()">Limpar</button>
+          <button type="button"  class="btn btn-success" onclick="fetchAndFillForm()">Buscar</button>
+          <button type="button"  class="btn btn-success" onclick="updateUserData()">Editar</button>
         </form>      
       </div>
       <table class="striped" id="tabela">
@@ -107,8 +109,7 @@
               <th>Telefone</th>
               <th>Vencimendo</th>
               <th>Valor da mensalidade</th>
-              <th>Status</th>
-              <th>Editar</th>
+              <th>Status</th>             
               <th>Excluir</th>
           </tr>
         </thead>

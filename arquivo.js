@@ -63,26 +63,78 @@
             console.error('Erro ao deletar registro:', error);
           }
         }
+
+
+        async function fetchAndFillForm() {
+          const idInput = document.getElementById('id');
+          const nomeInput = document.getElementById('nome');
+          const sobrenomeInput = document.getElementById('sobrenome');
+          const cpfInput = document.getElementById('cpf');
+          const dataNascInput = document.getElementById('dataNasc');
+          const emailInput = document.getElementById('email');
+          const celularInput = document.getElementById('celular');
+          const dataMensInput = document.getElementById('dataMens');
+          const valorMensalidade = document.getElementById('valorMensalidade');
+          const statusInput = document.getElementById('status');  
+          idInput.value = prompt( 'Por favor, insira um ID de usuário válido.');      
+          const id =  idInput.value
+          
+        /*  if (!id) {
+            
+            return;
+          }
+         */
+          try {              
+           
+
+            const response = await fetch(`http://localhost:8080/aluno/buscar/${id}`);
+            
+            if (!response.ok) {
+              throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+        
+            // Parsear a resposta como JSON
+            const userData = await response.json();
+        
+            //  Preencher o formulário com os dados do usuário
+           
+            idInput.value = userData.id;            
+            nomeInput.value = userData.nome;
+            sobrenomeInput.value = userData.sobrenome;
+            cpfInput.value = userData.cpf;
+            dataNascInput.value = userData.dataNasc;
+            emailInput.value = userData.email;
+            celularInput.value = userData.celular;
+            dataMensInput.value = userData.dataMens;
+            valorMensalidade.value = userData.valorMensalidade;
+            statusInput.value = userData.status;
+          } catch (error) {
+            console.error(`Erro durante a busca e preenchimento do formulário: ${error.message}`);
+          }
+        }
     
           // Função para atualizar um registro
-  async function atualizarRegistro(id) {
-    try {
+        /*  async function atualizarRegistro(id) { 
+          try {
       // Implemente a lógica para obter os novos dados do registro a ser atualizado
-      const novoNome = prompt('Digite o novo nome:');
-      const novoSobrenome = prompt('Digite o novo sobrenome:');
-      const novoEmail = prompt('Digite o novo email:');
-      const novoFone = prompt('Digite o novo telefone:');
-      const vencimento = prompt('Digite a nova data de vencimento:');
-      const mensalidade = prompt('Digite o novo valor da mensalidade:');
-      const novoStatus = prompt('Digite o novo status:');
-      const novoid = id;
-      // Substitua 'URL_DA_SUA_API' pela URL real da sua API para atualizar
-      const response = await fetch(`http://localhost:8080/aluno/atualiza`, {
-        method: 'PUT', // ou 'PATCH' dependendo da sua API
-        headers: {
+         const novoid = id;
+         const novoNome = prompt('Digite o novo nome:');
+         const novoSobrenome = prompt('Digite o novo sobrenome:');
+         const novoEmail = prompt('Digite o novo email:');
+         const novoFone = prompt('Digite o novo telefone:');
+         const vencimento = prompt('Digite a nova data de vencimento:');
+         const mensalidade = prompt('Digite o novo valor da mensalidade:');
+         const novoStatus = prompt('Digite o novo status:');
+      
+      // Substitua 'URL_DA_SUA_API' pela URL real da sua API para atualizar 
+         const response = await fetch(`http://localhost:8080/aluno/atualiza` , {
+         method: 'PUT', // ou 'PATCH' dependendo da sua API
+         headers: {
           'Content-Type': 'application/json',
+          
           // Adicione cabeçalhos adicionais, se necessário
-        },        
+        },   
+         
         body: JSON.stringify({ id:novoid ,nome:novoNome}),
         body: JSON.stringify({ id:novoid ,sobrenome:novoSobrenome}),
         body: JSON.stringify({ id:novoid ,email:novoEmail}),
@@ -103,13 +155,66 @@
       console.error('Erro ao atualizar registro:', error);
     }
   }
-        
+  */
+ 
+  async function updateUserData() {    
+    const idInput = document.getElementById('id');
+    const nomeInput = document.getElementById('nome');
+    const sobrenomeInput = document.getElementById('sobrenome');
+    const cpfInput = document.getElementById('cpf');
+    const emailInput = document.getElementById('email');
+    const celularInput = document.getElementById('celular');
+    const dataMensInput = document.getElementById('dataMens');
+    const valorMensalidade = document.getElementById('valorMensalidade');
+    const statusInput = document.getElementById('status');     
+      
+    const updateId =  idInput.value
+    const updateNome = nomeInput.value 
+    const updateSobrenome = sobrenomeInput.value
+    const updateCpf = cpfInput.value 
+    const updateEmail = emailInput.value 
+    const updateCelular = celularInput.value 
+    const updateDataMens = dataMensInput.value
+    const updateValorMensalidade = valorMensalidade.value 
+    const updateStatus = statusInput.value 
+  
+    try {
+      const response = await fetch(`http://localhost:8080/aluno/atualiza`, {
+        method: 'PUT', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: updateId,
+          nome: updateNome,
+          sobrenome: updateSobrenome,
+          cpf: updateCpf,
+          email: updateEmail,
+          celular: updateCelular,
+          dataMens: updateDataMens,
+          valorMensalidade: updateValorMensalidade,
+          status: updateStatus
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+      }
+  
+      alert('Dados do usuário atualizados com sucesso!');
+      fetchDataAndPopulateTable();
+      limparCampos();
+    } catch (error) {
+      console.error(`Erro durante a atualização dos dados: ${error.message}`);
+    }
+  }
+     
          
             // Função para buscar dados da API e preencher a tabela
             async function fetchDataAndPopulateTable() {
               try {
                 // Substitua 'URL_DA_SUA_API' pela URL real da sua API
-                const response = await fetch('http://localhost:8080/aluno/busca');
+                const response = await fetch( 'http://localhost:8080/aluno/busca');
                 const data = await response.json();
         
                 // Limpa a tabela antes de inserir novos dados
@@ -127,8 +232,7 @@
                     <td>${item.celular}</td>
                     <td>${item.dataMens}</td>
                     <td>${item.valorMensalidade}</td>
-                    <td>${item.status}</td>
-                    <td><button  class="btn btn-success" onclick="atualizarRegistro(${item.id})">Atualizar</button></td>                   
+                    <td>${item.status}</td>                    
                     <td><button  class="btn btn-success"  onclick="deletarRegistro(${item.id})">Excluir</button></td>`;
                     
                   tbody.appendChild(row);
